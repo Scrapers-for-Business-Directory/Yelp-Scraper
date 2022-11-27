@@ -5,6 +5,7 @@ import pandas as pd
 from fake_useragent import UserAgent
 from time import sleep
 ua = UserAgent()
+from stqdm import stqdm
 
 def scrape_go(category, city, state, pages):
     items_list = []
@@ -18,27 +19,26 @@ def scrape_go(category, city, state, pages):
         soup = BeautifulSoup(response.text, 'html.parser')
         cards = soup.select('.padding-l3__09f24__IOjKY')
         progress.metric('Pages scraped', n)
-        k = 0
-        for card in cards:
+        for x in stqdm(range(len(cards))):
             try:
-                name = card.select_one('.css-1m051bw').text
+                name = cards[x].select_one('.css-1m051bw').text
             except:
                 name = None
             try:
-                link = 'https://www.yelp.com' + card.select_one('.css-1m051bw')['href']
+                link = 'https://www.yelp.com' + cards[x].select_one('.css-1m051bw')['href']
             except:
                 link = None
             try:
-                tags = card.select('.css-11bijt4')
+                tags = cards[x].select('.css-11bijt4')
                 tags = [t.text for t in tags]
             except:
                 tags = None
             try:
-                rate = card.select_one('.css-gutk1c').text
+                rate = cards[x].select_one('.css-gutk1c').text
             except:
                 rate = None
             try:
-                reviews = card.select_one('.css-chan6m').text.replace('(','').replace(')', '')
+                reviews = cards[x].select_one('.css-chan6m').text.replace('(','').replace(')', '')
             except:
                 reviews = None
 
