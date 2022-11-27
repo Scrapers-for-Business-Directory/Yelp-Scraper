@@ -131,7 +131,7 @@ if __name__ == "__main__":
     with st.form('Scraper'):
         st.caption("Choose the category and location in the sidebar")
         st.caption('Fields to be scraped are: Name, Website, Phone, Address, Tags, Rating, Review and Yelp link')
-        pages = st.number_input('Number of pages to scrape') + 1
+        pages = st.number_input('Number of pages to scrape')
         start_scraping = st.form_submit_button('Scrape!')
 
     if start_scraping :
