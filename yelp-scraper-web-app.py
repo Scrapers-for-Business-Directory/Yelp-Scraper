@@ -88,6 +88,7 @@ def scrape_go(category, city, state, pages):
 
 if __name__ == "__main__":
     st.title('YELP SCRAPER')
+    st.caption('Fields to be scraped are: Name, Website, Phone, Address, Tags, Rating, Reviews, Yelp link')
     with st.sidebar:
         st.caption('Select the category to scrape')
         restaurant = st.selectbox('Select what you want',
