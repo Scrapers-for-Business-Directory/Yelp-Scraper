@@ -7,7 +7,7 @@ from time import sleep
 ua = UserAgent()
 from stqdm import stqdm
 
-st.set_page_config(page_title= 'Local.com Scraper', page_icon=":man:")
+st.set_page_config(page_title= 'Yelp Scraper', page_icon=":man:")
 hide_menu = """
 <style>
 #MainMenu {
@@ -16,6 +16,7 @@ footer {
     visibility:hidden;}
 </style>
 """
+st.markdown(hide_menu, unsafe_allow_html=True)
 
 def scrape_go(category, city, state, pages):
     items_list = []
@@ -98,7 +99,6 @@ def scrape_go(category, city, state, pages):
 
 if __name__ == "__main__":
     st.title('YELP SCRAPER')
-    st.markdown(hide_menu, unsafe_allow_html=True)
     st.caption('Fields to be scraped are: Name, Website, Phone, Address, Tags, Rating, Reviews, Yelp link')
     with st.sidebar:
         st.caption('Select the category to scrape')
